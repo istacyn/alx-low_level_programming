@@ -6,6 +6,7 @@
  * @n: elements parameter
  * @a: string parameter
  */
+
 void print_array(int *a, int n)
 {
 	int i;
