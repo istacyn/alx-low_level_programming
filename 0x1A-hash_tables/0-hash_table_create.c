@@ -36,5 +36,5 @@ hash_table_t *hash_table_create(unsigned long int size)
 
 	/*Set size of hash table*/
 	hash_table->size = size;
-		return (hash_table);
+	return (hash_table);
 }
