@@ -17,13 +17,13 @@ def count_cells(grid, row, column):
 
     count = 0
 
-    if row > 0 and not grid[row - 1][column]:
+    if row <= 0 or not grid[row - 1][column]:
         count += 1
-    if column > 0 and not grid[row][column - 1]:
+    if column <= 0 or not grid[row][column - 1]:
         count += 1
-    if column < len(grid[row]) - 1 and not grid[row][column + 1]:
+    if column >= len(grid[row]) - 1 or not grid[row][column + 1]:
         count += 1
-    if row < len(grid) - 1 and not grid[row + 1][column]:
+    if row >= len(grid) - 1 or not grid[row + 1][column]:
         count += 1
 
     return count
@@ -45,6 +45,6 @@ def island_perimeter(grid):
     for row in range(len(grid)):
         for column in range(len(grid[row])):
             if grid[row][column]:
-                perimeter = count_cells(grid, row column)
+                perimeter += count_cells(grid, row, column)
 
     return perimeter
