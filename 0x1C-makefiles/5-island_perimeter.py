@@ -2,33 +2,49 @@
 """Returns the perimeter of an island"""
 
 
+def count_cells(grid, row, column):
+    """
+    Counts the number of water cells neighboring a given cell in the grid.
+
+    Args:
+        grid (list): The grid representing the island.
+        row (int): The row index of the cell.
+        column (int): The column index of the cell.
+
+    Returns:
+        int: The count of water cells neighboring a given cell.
+    """
+
+    count = 0
+
+    if row > 0 and not grid[row - 1][column]:
+        count += 1
+    if column > 0 and not grid[row][column - 1]:
+        count += 1
+    if column < len(grid[row]) - 1 and not grid[row][column + 1]:
+        count += 1
+    if row < len(grid) - 1 and not grid[row + 1][column]:
+        count += 1
+
+    return count
+
+
 def island_perimeter(grid):
     """
-        Calculates the perimeter of the island described in the grid.
+    Calculates the perimeter of the island described in the grid.
 
-        Args:
-            grid: Represents the grid.
-            0 represents water zone, 1 represents land zone.
+    Args:
+        grid (list): The grid representing the island.
 
-        Returns:
-            The perimieter of the island(int).
-        """
+    Returns:
+        int: The perimieter of the island.
+    """
 
-    rows = len(grid)
-    columns = len(grid[0])
     perimeter = 0
 
-    if not grid:
-        return 0
-
-    for row in range(rows):
-        for col in range(columns):
-            if grid[row][col] == 1:
-                perimeter = +4
-
-                if row > 0 and grid[row - 1][col] == 1:
-                    perimeter -= 2
-                if col > 0 and grid[row][col - 1] == 1:
-                    perimeter -= 2
+    for row in range(len(grid)):
+        for column in range(len(grid[row])):
+            if grid[row][column]:
+                perimeter = count_cells(grid, row column)
 
     return perimeter
